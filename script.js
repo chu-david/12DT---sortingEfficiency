@@ -37,8 +37,7 @@ function bubbleSort(toSort){
 
 function insertionSort(toSort){
 
-    console.log("runing insertion sort");
-
+    console.log("running insertion sort");
 }
 
 function ReadFile(){
@@ -48,6 +47,7 @@ function ReadFile(){
         url: "media/countriesOfTheWorld.csv", dataType:"text", async: false, 
         success: function(result){
             
+            console.log("successful import");
 
         
         }
