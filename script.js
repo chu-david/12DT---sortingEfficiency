@@ -3,8 +3,14 @@ $(document).ready(function(){
 
     //ReadFile();
 
-    numToSort = randArray(10,0,10);
+    var Globalcounter=0;
+
+
+    for(var i=0;i<1000;i++){
+    numToSort = randArray(100,0,10);
     //console.log(numToSort);
+    
+    /*
     var tally= [0,0,0,0,0,0,0,0,0,0,0];
 
     var simNum = 100000;
@@ -16,12 +22,13 @@ $(document).ready(function(){
     }
 
     console.log(tally);
-
-    /*
+*/
+    var numToSort2 = numToSort.slice(0);    
+    
     var sortByBubble = bubbleSort(numToSort);
  
-    var sortByInsertion = insertionSort(numToSort);
- */  
+    var sortByInsertion = insertionSort(numToSort2);
+
 
 })
 
@@ -44,23 +51,58 @@ return IntArray;
 
 function bubbleSort(toSort){
     console.log("running bubble sort");
+    var swapped = true;
+    var counterBubble = 0;
+    var counterSwap = 0;
+
+    while (swapped == true){
+
+        swapped = false;
+
+        for (var i=0; i < toSort.length; i++){
+            counterBubble++;
+            if (toSort[i] > toSort[i+1]){
+          
+                var temporary = toSort[i];
+                toSort[i] = toSort[i+1];
+                toSort[i+1] = temporary;
+
+                swapped = true;
+                counterSwap++;
+
+            }
+
+            counterBubble++;
+
+        }
+
+
+
+    }
+    console.log("counterBubble"+counterBubble);
+    console.log("counterSwap"+counterSwap)
+
+    return toSort
+
 }
 
 function insertionSort(toSort){
 
     console.log("running insertion sort");
+    var counterSwapInsertion=0;
+    var counterInsertion=0;
 
     for(var i=1;i<toSort.length;i++){ //loop through the 1st element to last, missing 0th element//
-        console.log("pass"+i);
+        
         for(var j=i;j>=0;j--){
-
+            counterInsertion++;
             if(toSort[j-1]>toSort[j]){
 
                 var temp1 = toSort[j-1];
                 toSort[j-1] = toSort[j];
                 toSort[j] = temp1;
+                counterSwapInsertion++;
 
-                console.log(toSort);
             }else{
 
                 break;
@@ -69,35 +111,11 @@ function insertionSort(toSort){
 
 
     }
-    console.log(toSort);
+    console.log("countByInsertion: "+counterInsertion);
+    console.log("counter Swap"+counterSwapInsertion);
 return toSort}
 
-function theLastNumber(){
-    var arrayIn =[];
-    for(var i=1;i<=10;i++){
-        arrayIn.push(i);
-    }
-    
-    while(arrayIn.length>1){
 
-        var index1 = Math.floor(Math.random()*arrayIn.length); //0->9
-        var index2 = Math.floor(Math.random()*arrayIn.length); //0->9
-
-        //console.log(index1);
-        //console.log(index2);
-        while(index2==index1){
-            index2 = Math.floor(Math.random()*arrayIn.length);
-        }
-            arrayIn.push(Math.abs(arrayIn[index1]-arrayIn[index2]));
-
-            arrayIn.splice(index1,1);
-            arrayIn.splice(index2,1);
-
-
-    }
-    //console.log(arrayIn[0]);
-    return arrayIn[0];
-}
 
 
 function ReadFile(){
