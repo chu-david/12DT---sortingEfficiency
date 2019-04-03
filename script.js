@@ -9,8 +9,8 @@ $(document).ready(function(){
     for(var i=0;i<1000;i++){
     numToSort = randArray(100,0,10);
     //console.log(numToSort);
+    };
     
-    /*
     var tally= [0,0,0,0,0,0,0,0,0,0,0];
 
     var simNum = 100000;
@@ -22,7 +22,7 @@ $(document).ready(function(){
     }
 
     console.log(tally);
-*/
+
     var numToSort2 = numToSort.slice(0);    
     
     var sortByBubble = bubbleSort(numToSort);
@@ -131,4 +131,35 @@ function ReadFile(){
         }
     });
 
+}
+function theLastNumber(){	
+    var arrayIn =[];	
+    for(var i=1;i<=10;i++){	
+        arrayIn.push(i);	
+    }	
+
+     while(arrayIn.length>1){	
+
+         var index1 = randInt(0,arrayIn.length-1); //0->9	
+        var index2 = randInt(0,arrayIn.length-1); //0->9	
+
+         //console.log(index1);	
+        //console.log(index2);	
+        while(index2==index1){	
+            index2 = randInt(0,arrayIn.length-1);	
+        }	
+            arrayIn.push(Math.abs(arrayIn[index1]-arrayIn[index2]));	
+
+        if(index1>index2){
+             arrayIn.splice(index1,1);	
+            arrayIn.splice(index2,1);	
+        }else{
+            arrayIn.splice(index2,1);	
+            arrayIn.splice(index1,1);	
+
+        }
+
+     }	
+    //console.log(arrayIn[0]);	
+    return arrayIn[0];	
 }
